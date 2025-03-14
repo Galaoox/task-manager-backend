@@ -17,7 +17,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build docker image
       run: | 
-        docker build --platform linux --tag ${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest -f CI/Dockerfile .
+        docker build --platform linux --tag ${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest -f .
     - name: Publish docker image
       run: |
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest
