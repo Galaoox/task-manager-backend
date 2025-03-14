@@ -20,4 +20,5 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 EXPOSE 80
 EXPOSE 443
+ENV ASPNETCORE_URLS=http://0.0.0.0:80
 ENTRYPOINT ["dotnet", "TaskManager.API.dll"] 

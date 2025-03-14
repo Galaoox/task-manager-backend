@@ -17,13 +17,13 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build docker image
       run: | 
-        docker build --platform linux --tag ${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest -f CI/Dockerfile .
+        docker build --platform linux --tag ${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest -f Dockerfile .
     - name: Publish docker image
       run: |
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest
-    # - name: App service auth
-    #   uses: azure/webapps-deploy@v2
-    #   with:
-    #     app-name: 'task-manager-backend-eavn'
-    #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-    #     images: '${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest
+    - name: App service auth
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'task-manager-backend-eavn'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: '${{ secrets.DOCKERHUB_USERNAME }}/task-manager-backend:latest
